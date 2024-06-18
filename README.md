@@ -13,6 +13,9 @@
   -  ```prisma init ```
   -  ```prisma generate ```
   -  ```nodemon index.js ```
+  -  make sure the username, password, and name of your database matches the .env <br><br>
+    ```DATABASE_URL = mysql://root:password@localhost:3306/testjwt``` <br><br>
+    for this env, database name is testjwt
     
   </details>
 
