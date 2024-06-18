@@ -7,7 +7,6 @@ export default function login() {
   return (
     <>
       <Login/>
-      {/* <ImportData/> */}
     </>
   );
 }
