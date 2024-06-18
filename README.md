@@ -2,6 +2,20 @@
 **Status: Finished** <br>
 **Current version: Beta version**
 
+# How to run the api? (localhost)
+  <details>  
+  <summary>
+      <strong>How to run ⚙</strong>
+  </summary>
+  
+  -  ```npm i ```
+  -  ```npm install -g prisma ```
+  -  ```prisma init ```
+  -  ```prisma generate ```
+  -  ```nodemon index.js ```
+    
+  </details>
+
 ---
 
 This API provides endpoints to manage Faskes (Fasilitas Kesehatan) and Provinsi data.
