@@ -1,6 +1,9 @@
 # Go Tb API
 **Status: Finished** <br>
-**Current version: Beta version**
+**Current version: Beta version** <br> <br>
+![Static Badge](https://img.shields.io/badge/ApiGoTb-0.0.2-green)
+
+
 
 # How to run the api? (localhost)
   <details>  
@@ -29,7 +32,7 @@ This API provides endpoints to manage Faskes (Fasilitas Kesehatan) and Provinsi 
 
 - `GET /faskes`: Get all Faskes data.
 - `GET /faskes/:id`: Get a specific Faskes by ID.
-- `POST /afaskes`: Create a new Faskes (admin role required).
+- `POST /faskes`: Create a new Faskes (admin role required).
 - `PUT /faskes/:id`: Update an existing Faskes by ID (admin role required).
 - `DELETE /faskes/:id`: Delete a Faskes by ID (admin role required).
 
