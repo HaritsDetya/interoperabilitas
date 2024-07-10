@@ -11,6 +11,17 @@ function NavigationMenu() {
     { text: "Data Wilayah" },
   ];
 
+  const tabs = [
+    { name: "My Account", href: "#", current: true },
+    { name: "Company", href: "#", current: false },
+    { name: "Team Members", href: "#", current: false },
+    { name: "Billing", href: "#", current: false },
+  ];
+
+  function classNames(...classes) {
+    return classes.filter(Boolean).join(" ");
+  }
+
   return (
     <nav className="flex w-full rounded-full py-3 px-5 bg-primary gap-5 justify-between items-center max-md:flex-wrap">
       <a href="#home" className="flex items-center" aria-label="Home">
@@ -49,6 +60,11 @@ function ImportSection() {
             <input
               type="file"
               id="fileInput"
+        className="justify-center items-start px-2.5 py-3.5 bg-white rounded-md border-black border-solid max-md:pr-5 max-md:max-w-full"
+      />
+      <div className="flex flex-col justify-center text-center whitespace-nowrap">
+        <button
+          type="button"
               className="justify-center px-6 py-3.5 bg-gray-200 rounded-none border-black border-solid max-md:px-5"
               aria-label="Choose file"
             />
