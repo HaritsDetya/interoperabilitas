@@ -5,8 +5,8 @@ import "@/styles/globals.css"
 export default function data_master(){
     return(
         <>
-            {/* <DataMaster/> */}
-            <DataMasterBack/>
+            <DataMaster/>
+            {/* <DataMasterBack/> */}
         </>
     )
 }

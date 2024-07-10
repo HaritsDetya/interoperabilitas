@@ -1,39 +1,52 @@
 import * as React from "react";
 
 function Navbar() {
+  const navItems = [
+    { text: "Beranda" },
+    { text: "Pengguna" },
+    { text: "Data Master", hasHighlight: true },
+    { text: "Data Pictures" },
+    { text: "Data Videos" },
+    { text: "Data Member" },
+    { text: "Data Wilayah" },
+  ];
   return (
-    <nav className="flex bg-primary gap-5 justify-between items-center self-stretch py-3.5 pr-11 pl-5 w-full text-sm text-white rounded-3xl max-md:flex-wrap max-md:px-5 max-md:max-w-full">
-      <div className="flex gap-5 justify-between items-center self-stretch max-md:flex-wrap">
+    <nav className="flex w-full rounded-full py-3 px-5 bg-primary gap-5 justify-between items-center max-md:flex-wrap">
+      <a href="#home" className="flex items-center" aria-label="Home">
         <img
           loading="lazy"
           src="https://cdn.builder.io/api/v1/image/assets/TEMP/c8355dad4d7585595df9e246ddd2f01abdbadaf18344fce68dee0f765745acdd?apiKey=7879ad012efb4de194a58d39e8a3a4a5&"
-          alt=""
+          alt="Logo"
           className="shrink-0 self-stretch max-w-full aspect-[2.22] w-[120px]"
         />
-        <a href="#" className="self-stretch my-auto">
-          Beranda
-        </a>
-        <a href="#" className="self-stretch my-auto">
-          Pengguna
-        </a>
-        <div className="flex flex-col self-stretch my-auto">
-          <a href="#">Data Master</a>
-          <div className="shrink-0 mt-1.5 bg-yellow-400 rounded-xl h-[3px]" />
+      </a>
+      {navItems.map((item, index) => (
+        <div
+          key={index}
+          className={`self-stretch my-auto ${
+            item.hasHighlight ? "flex flex-col" : ""
+          }`}
+        >
+          <a href={`#${item.text.replace(" ", "").toLowerCase()}`}>
+            {item.text}
+          </a>
+          {item.hasHighlight && (
+            <div className="shrink-0 mt-1.5 bg-yellow-400 rounded-xl h-[3px]" />
+          )}
         </div>
-        <a href="#" className="self-stretch my-auto">
-          Data Pictures
-        </a>
-      </div>
-      <div className="flex gap-5 justify-between self-stretch my-auto">
-        <a href="#">Data Member</a>
-        <a href="#">Data Wilayah</a>
-      </div>
-      <img
-        loading="lazy"
-        src="https://cdn.builder.io/api/v1/image/assets/TEMP/d212aa7ed7246c8356b9cdb33f4f4cd184e73fcee1743e6da25f633cba3c5c01?apiKey=7879ad012efb4de194a58d39e8a3a4a5&"
-        alt="User Avatar"
-        className="shrink-0 self-stretch my-auto w-11 aspect-square"
-      />
+      ))}
+      <a
+        href="#profile"
+        className="w-11 aspect-square"
+        aria-label="User Profile"
+      >
+        <img
+          loading="lazy"
+          src="https://cdn.builder.io/api/v1/image/assets/TEMP/d212aa7ed7246c8356b9cdb33f4f4cd184e73fcee1743e6da25f633cba3c5c01?apiKey=7879ad012efb4de194a58d39e8a3a4a5&"
+          alt="User Profile"
+          className="shrink-0 my-auto w-11 aspect-square"
+        />
+      </a>
     </nav>
   );
 }
@@ -44,9 +57,13 @@ function TableHeader() {
       <div className="justify-center items-start px-4 py-3.5 whitespace-nowrap bg-teal-500 rounded-md max-md:pr-5">
         Filename
       </div>
-      <div className="justify-center px-7 py-3.5 bg-teal-500 max-md:px-5">Data Lv.</div>
+      <div className="justify-center px-7 py-3.5 bg-teal-500 max-md:px-5">
+        Data Lv.
+      </div>
       <div className="justify-center px-4 py-3.5 bg-teal-500">Uploaded At</div>
-      <div className="justify-center px-4 py-3.5 bg-teal-500 max-md:px-5">Validate At</div>
+      <div className="justify-center px-4 py-3.5 bg-teal-500 max-md:px-5">
+        Validate At
+      </div>
       <div className="z-10 justify-center px-4 py-3.5 whitespace-nowrap bg-teal-500 max-md:px-5">
         Validator
       </div>
@@ -60,11 +77,24 @@ function TableHeader() {
   );
 }
 
-function TableRow({ filename, dataLv, uploadedAt, validateAt, validator, status, imgSrc }) {
+function TableRow({
+  filename,
+  dataLv,
+  uploadedAt,
+  validateAt,
+  validator,
+  status,
+  imgSrc,
+}) {
   return (
     <div className="flex gap-0 text-base text-neutral-600 max-md:flex-wrap">
       <div className="flex gap-2.5 px-4 py-5 text-emerald-400 whitespace-nowrap bg-white">
-        <img loading="lazy" src={imgSrc} alt="" className="shrink-0 aspect-[0.83] w-[19px]" />
+        <img
+          loading="lazy"
+          src={imgSrc}
+          alt=""
+          className="shrink-0 aspect-[0.83] w-[19px]"
+        />
         <div className="my-auto">{filename}</div>
       </div>
       <div className="justify-center px-6 py-7 whitespace-nowrap bg-white max-md:px-5">
@@ -76,10 +106,19 @@ function TableRow({ filename, dataLv, uploadedAt, validateAt, validator, status,
       <div className="justify-center px-5 py-7 text-center whitespace-nowrap bg-white">
         {validateAt}
       </div>
-      <div className="justify-center px-4 py-7 text-center bg-white">{validator}</div>
-      <div className="justify-center px-4 py-7 text-center bg-white">{validator}</div>
+      <div className="justify-center px-4 py-7 text-center bg-white">
+        {validator}
+      </div>
+      <div className="justify-center px-4 py-7 text-center bg-white">
+        {validator}
+      </div>
       <div className="flex flex-col justify-center px-5 py-4 text-xs text-center text-green-700 whitespace-nowrap bg-white max-md:px-5">
-        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/9a8fe8d0edd2d671f16c54d5bcbf9709f4fad16450dc9d5ddf4d0cbf3b78e97e?apiKey=7879ad012efb4de194a58d39e8a3a4a5&" alt="" className="self-center w-7 aspect-square"/>
+        <img
+          loading="lazy"
+          src="https://cdn.builder.io/api/v1/image/assets/TEMP/9a8fe8d0edd2d671f16c54d5bcbf9709f4fad16450dc9d5ddf4d0cbf3b78e97e?apiKey=7879ad012efb4de194a58d39e8a3a4a5&"
+          alt=""
+          className="self-center w-7 aspect-square"
+        />
         <div className="justify-center px-1.5 py-px mt-1.5 bg-lime-50 rounded border border-green-600 border-solid">
           {status}
         </div>
@@ -88,11 +127,24 @@ function TableRow({ filename, dataLv, uploadedAt, validateAt, validator, status,
   );
 }
 
-function TableRowGray({ filename, dataLv, uploadedAt, validateAt, validator, status, imgSrc }) {
+function TableRowGray({
+  filename,
+  dataLv,
+  uploadedAt,
+  validateAt,
+  validator,
+  status,
+  imgSrc,
+}) {
   return (
     <div className="flex gap-0 text-base text-neutral-600 max-md:flex-wrap">
       <div className="flex gap-2.5 px-4 py-5 text-emerald-400 whitespace-nowrap bg-gray-200 rounded-none">
-        <img loading="lazy" src={imgSrc} alt="" className="shrink-0 aspect-[0.83] w-[19px]" />
+        <img
+          loading="lazy"
+          src={imgSrc}
+          alt=""
+          className="shrink-0 aspect-[0.83] w-[19px]"
+        />
         <div className="my-auto">{filename}</div>
       </div>
       <div className="justify-center px-6 py-7 whitespace-nowrap bg-gray-200 max-md:px-5">
@@ -104,10 +156,19 @@ function TableRowGray({ filename, dataLv, uploadedAt, validateAt, validator, sta
       <div className="justify-center px-4 py-7 text-center whitespace-nowrap bg-gray-200">
         {validateAt}
       </div>
-      <div className="z-10 justify-center px-5 py-7 text-center bg-gray-200">{validator}</div>
-      <div className="justify-center px-5 py-7 text-center bg-gray-200">{validator}</div>
+      <div className="z-10 justify-center px-5 py-7 text-center bg-gray-200">
+        {validator}
+      </div>
+      <div className="justify-center px-5 py-7 text-center bg-gray-200">
+        {validator}
+      </div>
       <div className="flex flex-col justify-center px-5 py-4 text-xs text-center text-red-700 bg-gray-200 rounded-none max-md:px-5">
-        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/b7bf20ee9745a885f5f7d2e8f1f21e6f40c4f30fa43265bbf69de515e71487a4?apiKey=7879ad012efb4de194a58d39e8a3a4a5&" alt="" className="self-center aspect-square w-[27px]" />
+        <img
+          loading="lazy"
+          src="https://cdn.builder.io/api/v1/image/assets/TEMP/b7bf20ee9745a885f5f7d2e8f1f21e6f40c4f30fa43265bbf69de515e71487a4?apiKey=7879ad012efb4de194a58d39e8a3a4a5&"
+          alt=""
+          className="self-center aspect-square w-[27px]"
+        />
         <div className="justify-center px-1.5 py-px mt-1.5 bg-rose-50 rounded border border-red-500 border-solid">
           {status}
         </div>
@@ -132,7 +193,12 @@ function DataMaster() {
       <section className="flex flex-col px-8 pt-7 pb-20 mt-5 w-full bg-white rounded-md max-w-[1200px] shadow-[-1px_0px_4px_rgba(0,0,0,0.25)] max-md:px-5 max-md:max-w-full">
         <div className="flex gap-5 justify-between w-full max-md:flex-wrap max-md:max-w-full">
           <button className="flex gap-2 px-2.5 py-3 text-sm text-white whitespace-nowrap bg-green-600 rounded-md">
-            <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/a5b147f7fb44541c0908c3c9fd38b8db37d2a96b3041ef1812ea6e9ac99dbd5c?apiKey=7879ad012efb4de194a58d39e8a3a4a5&" alt="" className="shrink-0 aspect-[1.12] fill-white w-[18px]" />
+            <img
+              loading="lazy"
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/a5b147f7fb44541c0908c3c9fd38b8db37d2a96b3041ef1812ea6e9ac99dbd5c?apiKey=7879ad012efb4de194a58d39e8a3a4a5&"
+              alt=""
+              className="shrink-0 aspect-[1.12] fill-white w-[18px]"
+            />
             Import
           </button>
           <form className="justify-center items-start px-2.5 py-3 text-base bg-white rounded-md border-black border-solid text-zinc-600 max-md:pr-5">

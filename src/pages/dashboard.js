@@ -7,8 +7,8 @@ import ImportDataBack from "@/components/ImportDataBack";
 export default function Home() {
   return (
     <>
-      {/* <ImportData/> */}
-      <ImportDataBack/>
+      <ImportData/>
+      {/* <ImportDataBack/> */}
     </>
   );
 }
