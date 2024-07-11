@@ -5,7 +5,7 @@ import Navbar from "./Navbar";
 const navItems = [
   { text: "Beranda" },
   { text: "Pengguna" },
-  { text: "Data Master", hasHighlight: true, href: `/dashboard`, },
+  { text: "Data Master", hasHighlight: true, href: `/dashboard` },
   { text: "Data Pictures" },
   { text: "Data Videos" },
   { text: "Data Member" },
@@ -23,7 +23,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-<Navbar/>
+<Navbar />;
 
 function ImportSection() {
   return (
@@ -133,9 +133,7 @@ function Header() {
 function ImportDataBack() {
   return (
     <div className="flex mx-20 flex-col items-center px-5 pt-3.5 pb-20 font-medium bg-slate-100">
-      <div className="flex gap-5 justify-between self-stretch py-3.5 pr-11 pl-5 w-full text-sm text-white rounded-3xl max-md:flex-wrap max-md:px-5 max-md:max-w-full">
-        <Navbar />
-      </div>
+      <Navbar />
       <Header />
       <div className="flex flex-col items-center px-16 pt-7 pb-20 mt-5 w-full bg-white rounded-md max-w-[1200px] shadow-[-1px_0px_4px_rgba(0,0,0,0.25)] max-md:px-5 max-md:max-w-full">
         <ImportSection />

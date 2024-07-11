@@ -1,3 +1,8 @@
+import { useState } from "react";
+import React from "react";
+import Image from "next/image";
+import { useRouter } from "next/router";
+
 const navItems = [
   { text: "Beranda" },
   { text: "Pengguna" },
@@ -9,6 +14,18 @@ const navItems = [
 ];
 
 export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleLogout = (event) => {
+    // Logic for logout
+    event.preventDefault();
+    router.push("/");
+  }
   return (
     <div className="flex gap-5 justify-between self-stretch py-3.5 pr-11 pl-5 w-full text-sm text-white rounded-3xl max-md:flex-wrap max-md:px-5 max-md:max-w-full">
       <nav className="flex w-full text-white rounded-3xl py-3 px-5 bg-gradient-to-r from-[#188D88] to-[#16B3AC] gap-5 justify-between items-center max-md:flex-wrap">
@@ -33,18 +50,30 @@ export default function Navbar() {
             )}
           </div>
         ))}
-        <a
-          href="#profile"
-          className="w-11 aspect-square"
-          aria-label="User Profile"
-        >
-          <img
-            loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/d212aa7ed7246c8356b9cdb33f4f4cd184e73fcee1743e6da25f633cba3c5c01?apiKey=7879ad012efb4de194a58d39e8a3a4a5&"
-            alt="User Profile"
-            className="shrink-0 my-auto w-11 aspect-square"
-          />
-        </a>
+        <div className="relative">
+          <div
+            className="flex items-center space-x-4 cursor-pointer bg-white rounded-full px-[1px] py-[1px]"
+            onClick={toggleDropdown}
+          >
+            <Image
+              className="rounded-full"
+              src="/image/profile.png"
+              alt="User Avatar"
+              width={44}
+              height={44}
+            />
+          </div>
+          {isOpen && (
+            <div className="absolute mt-1 w-20 rounded-md shadow-lg z-50">
+              <div
+                className="block text-center hover:cursor-pointer py-2 text-xs bg-red-500 hover:bg-red-600 text-white rounded-md"
+                onClick={handleLogout}
+              >
+                Logout
+              </div>
+            </div>
+          )}
+        </div>
       </nav>
     </div>
   );
