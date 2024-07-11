@@ -1,73 +1,80 @@
+import { useState } from "react";
+import React from "react";
+import Image from "next/image";
+import { useRouter } from "next/router";
+
+const navItems = [
+  { text: "Beranda" },
+  { text: "Pengguna" },
+  { text: "Data Master", hasHighlight: true, href: `/dashboard` },
+  { text: "Data Pictures" },
+  { text: "Data Videos" },
+  { text: "Data Member" },
+  { text: "Data Wilayah" },
+];
 
 export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleLogout = (event) => {
+    // Logic for logout
+    event.preventDefault();
+    router.push("/");
+  }
   return (
-    <nav className="bg-teal-500 p-4">
-      <div className="container mx-auto flex justify-between items-center">
-        <div className="flex items-center">
+    <div className="flex gap-5 justify-between self-stretch py-3.5 pr-11 pl-5 w-full text-sm text-white rounded-3xl max-md:flex-wrap max-md:px-5 max-md:max-w-full">
+      <nav className="flex w-full text-white rounded-3xl py-3 px-5 bg-gradient-to-r from-[#188D88] to-[#16B3AC] gap-5 justify-between items-center max-md:flex-wrap">
+        <a href="#home" className="flex items-center" aria-label="Home">
           <img
             loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/c8355dad4d7585595df9e246ddd2f01abdbadaf18344fce68dee0f765745acdd?apiKey=7879ad012efb4de194a58d39e8a3a4a5&"
+            src="/image/logo_gjls.svg"
             alt="Logo"
-            className="shrink-0 self-stretch max-w-full aspect-[2.22] w-[120px]"
+            className="shrink-0 self-stretch max-w-full aspect-[2.22] w-[180px]"
           />
-          <span className="text-white text-xl font-bold ml-2">LARAVEL</span>
+        </a>
+        {navItems.map((item, index) => (
+          <div
+            key={index}
+            className={`self-stretch my-auto ${
+              item.hasHighlight ? "flex flex-col" : ""
+            }`}
+          >
+            <a href={item.href}>{item.text}</a>
+            {item.hasHighlight && (
+              <div className="shrink-0 mt-1.5 bg-yellow-400 rounded-xl h-[3px]" />
+            )}
+          </div>
+        ))}
+        <div className="relative">
+          <div
+            className="flex items-center space-x-4 cursor-pointer bg-white rounded-full px-[1px] py-[1px]"
+            onClick={toggleDropdown}
+          >
+            <Image
+              className="rounded-full"
+              src="/image/profile.png"
+              alt="User Avatar"
+              width={44}
+              height={44}
+            />
+          </div>
+          {isOpen && (
+            <div className="absolute mt-1 w-20 rounded-md shadow-lg z-50">
+              <div
+                className="block text-center hover:cursor-pointer py-2 text-xs bg-red-500 hover:bg-red-600 text-white rounded-md"
+                onClick={handleLogout}
+              >
+                Logout
+              </div>
+            </div>
+          )}
         </div>
-        <ul className="flex space-x-4 text-white">
-          <li>
-            <a href="#" className="hover:underline">
-              Home
-            </a>
-          </li>
-          <li>
-            <a href="#" className="hover:underline">
-              Users
-            </a>
-          </li>
-          <li>
-            <a href="#" className="hover:underline">
-              Data Master
-            </a>
-          </li>
-          <li>
-            <a href="#" className="hover:underline">
-              Data Pictures
-            </a>
-          </li>
-          <li>
-            <a href="#" className="hover:underline">
-              Data Videos
-            </a>
-          </li>
-          <li>
-            <a href="#" className="hover:underline">
-              Data Member
-            </a>
-          </li>
-          <li>
-            <a href="#" className="hover:underline">
-              Data Wilayah
-            </a>
-          </li>
-        </ul>
-        <div className="text-white">
-          <button className="focus:outline-none">
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M5.121 19.88l-1.415-1.415M4 15h3m13 4v-3m-4 4h3m-4-4a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-          </button>
-        </div>
-      </div>
-    </nav>
+      </nav>
+    </div>
   );
 }
